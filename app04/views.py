@@ -30,3 +30,12 @@ class AdminPermission(BasePermission):
         if request.user =='ctz':
             return True
         return False
+
+class AnnoThrottle(SimpleRateThrottle):
+    scope = 'anno'
+    def get_cache_key(self, request, view):
+        #如果是匿名用户则执行
+        if not request.user:
+            return self.get_ident(request)
+        #如果不是匿名用户则让他执行
+        return None
