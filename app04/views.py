@@ -48,3 +48,13 @@ class UserThrottle(SimpleRateThrottle):
             return self.get_ident(request)
         #如果是匿名用户和管理员 则让他继续执行
         return None
+
+class AdminThrottle(SimpleRateThrottle):
+    scope = 'admin'
+
+    def get_cache_key(self, request, view):
+        #如果是管理员
+        if request.user=='ctz':
+            return self.get_ident(request)
+        #不是管理员
+        return  None
