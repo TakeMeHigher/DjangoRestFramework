@@ -39,3 +39,12 @@ class AnnoThrottle(SimpleRateThrottle):
             return self.get_ident(request)
         #如果不是匿名用户则让他执行
         return None
+class UserThrottle(SimpleRateThrottle):
+    scope = 'user'
+
+    def get_cache_key(self, request, view):
+        #当前用户登陆了,并且当前用户不是管理员
+        if request.user and request.user!='ctz':
+            return self.get_ident(request)
+        #如果是匿名用户和管理员 则让他继续执行
+        return None
