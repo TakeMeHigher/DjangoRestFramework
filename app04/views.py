@@ -17,3 +17,9 @@ class MyAuthentication(BaseAuthentication):
             return (user.name,user)
         return None
 
+class UserPermission(BasePermission):
+    message='登录用户才可以访问'
+    def has_permission(self, request, view):
+        if request.user:
+            return True
+        return False
