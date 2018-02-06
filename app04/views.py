@@ -76,3 +76,29 @@ class IndexView(APIView):
             extra_detail_plural = '还需要再等待{wait}秒'
         raise UserInnerThrottled(wait)
 
+class UserView(APIView):
+    '''
+    要求:登录用户能访问,普通用户10/m,管理员20/m
+    '''
+    authentication_classes = [MyAuthentication,]
+    permission_classes = [UserPermission,]
+    throttle_classes = [UserThrottle,AdminThrottle]
+    def get(self,request):
+        return Response('用户界面')
+
+    def permission_denied(self, request, message=None):
+        """
+        If request is not permitted, determine what kind of exception to raise.
+        """
+
+        if request.authenticators and not request.successful_authenticator:
+            raise exceptions.NotAuthenticated('无权访问')
+        raise exceptions.PermissionDenied(detail=message)
+
+
+    def throttled(self, request, wait):
+        class UserInnerThrottled(exceptions.Throttled):
+            default_detail = '请求被限制.'
+            extra_detail_singular = 'Expected available in {wait} second.'
+            extra_detail_plural = '还需要再等待{wait}秒'
+        raise UserInnerThrottled(wait)
