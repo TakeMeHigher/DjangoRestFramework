@@ -58,3 +58,21 @@ class AdminThrottle(SimpleRateThrottle):
             return self.get_ident(request)
         #不是管理员
         return  None
+
+class IndexView(APIView):
+    '''
+    要求,所有用户都能访问，匿名用户5/m,普通用户10/m,管理员不限
+    '''
+    authentication_classes = [MyAuthentication,]
+    permission_classes = []
+    throttle_classes = [AnnoThrottle,UserThrottle,AdminThrottle]
+    def get(self,request):
+        return Response('首页')
+
+    def throttled(self, request, wait):
+        class UserInnerThrottled(exceptions.Throttled):
+            default_detail = '请求被限制.'
+            extra_detail_singular = 'Expected available in {wait} second.'
+            extra_detail_plural = '还需要再等待{wait}秒'
+        raise UserInnerThrottled(wait)
+
