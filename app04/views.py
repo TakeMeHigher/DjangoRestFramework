@@ -23,3 +23,10 @@ class UserPermission(BasePermission):
         if request.user:
             return True
         return False
+
+class AdminPermission(BasePermission):
+    message='管理员才能访问'
+    def has_permission(self, request, view):
+        if request.user =='ctz':
+            return True
+        return False
