@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.versioning import QueryParameterVersioning
+from rest_framework.versioning import URLPathVersioning
 from rest_framework.response import Response
 # Create your views here.
 
-#1基于正则的方式传参
+#1基于url的get方式传参
 class TestView(APIView):
     versioning_class = QueryParameterVersioning
 
@@ -28,4 +29,20 @@ class TestView(APIView):
 
     def post(self,request):
         pass
+
+#2.基于url的正则方式传参
+class TestView1(APIView):
+    versioning_class =URLPathVersioning
+
+    authentication_classes = []
+    permission_classes = []
+    throttle_classes = []
+    def get(self,request,*args,**kwargs):
+        print(request.version)
+        print(request.versioning_scheme)
+
+
+        reverse_url=request.versioning_scheme.reverse('test',request=request)
+        return Response('基于url的正则传参,版本为%s'%request.version)
+
 
