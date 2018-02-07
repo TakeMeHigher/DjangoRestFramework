@@ -19,6 +19,7 @@ from app01 import views
 from app02 import views as app02_views
 from app03 import views as app03_views
 from app04 import views as app04_views
+from app05 import views as app05_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hosts/', views.HostView.as_view()),
@@ -43,5 +44,5 @@ urlpatterns = [
 
 
 
-
+    url(r'^test/', app05_views.TestView.as_view()),
 ]

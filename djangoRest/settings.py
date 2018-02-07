@@ -138,5 +138,10 @@ REST_FRAMEWORK = {
        'anno':'5/m',
        'user':'10/m',
        'admin':'20/m',
-    }
+    },
+    #版本控制
+    'DEFAULT_VERSION':'v1',#默认版本
+    'ALLOWED_VERSIONS':['v1','v2',],#允许的版本
+    'VERSION_PARAM':'version'#url中获取值的key
+
 }
