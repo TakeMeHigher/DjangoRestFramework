@@ -18,12 +18,19 @@ class UserSerializers(serializers.Serializer):
     group=serializers.CharField(source='group.title')
     menu=serializers.CharField(source='group.mu.name')
     #role=serializers.CharField(source=('roles.all'))
-    roles=serializers.ListField(child=MyCharFiled(),source='roles.all')
+    #roles=serializers.ListField(child=MyCharFiled(),source='roles.all')
+    roles=serializers.SerializerMethodField()
+
+    def get_roles(self,obj):
+        roles=obj.roles.all()
+        data_list=[]
+        for role in roles:
+            data_list.append({'id':role.id,'name':role.name})
+        return data_list
 
 
 
 # Create your views here.
-
 class SerView(APIView):
     authentication_classes = []
     permission_classes = []
