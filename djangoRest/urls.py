@@ -46,4 +46,6 @@ urlpatterns = [
 
     url(r'^test/', app05_views.TestView.as_view(),name='test'),
     url(r'^(?P<version>[v1|v2]+)/test1/', app05_views.TestView1.as_view(),name='test'),
+
+    url(r'^(?P<version>[v1|v2]+)/test1/', app05_views.TestView1.as_view(),name='test'),
 ]
