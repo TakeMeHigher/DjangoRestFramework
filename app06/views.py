@@ -11,9 +11,27 @@ class MyCharFiled(serializers.CharField):
         print(value)
         return {'id':value.pk,'name':value.name}
 
+class PasswordValidate(object):
+    def __init__(self,val):
+        self.val=val
+
+    def __call__(self,value):
+        if self.val !=value:
+            message='密码必须是%s'%self.val
+            raise serializers.ValidationError(message)
+
+    def set_context(self, serializer_field):
+        """
+        This hook is called by the serializer instance,
+        prior to the validation call being made.
+        """
+        # 执行验证之前调用,serializer_fields是当前字段对象
+        pass
+
+
 class UserSerializers(serializers.Serializer):
     name=serializers.CharField()
-    pwd=serializers.CharField()
+    pwd=serializers.CharField(error_messages={'required':'密码不能为空'},validators=[PasswordValidate('123'),])
     group_id=serializers.CharField()
     group=serializers.CharField(source='group.title')
     menu=serializers.CharField(source='group.mu.name')
@@ -43,6 +61,15 @@ class SerView(APIView):
     throttle_classes = []
     def get(self,request,*args,**kwargs):
         user_list=models.UserInfo.objects.all()
-        ser=UserSerializers1(instance=user_list,many=True,context={'request':request})
+        ser=UserSerializers(instance=user_list,many=True,context={'request':request})
         print(ser.data)
         return Response(ser.data)
+
+
+    def post(self,request,*args,**kwargs):
+        ser=UserSerializers(request.data)
+        if ser.is_valid():
+            print(ser.validated_data)
+        else:
+            print(ser.errors)
+        return Response('Post请求')
