@@ -28,6 +28,12 @@ class UserSerializers(serializers.Serializer):
             data_list.append({'id':role.id,'name':role.name})
         return data_list
 
+class UserSerializers1(serializers.ModelSerializer):
+    class Meta:
+        model=models.UserInfo
+        fields='__all__'
+        depth=2
+
 
 
 # Create your views here.
@@ -37,6 +43,6 @@ class SerView(APIView):
     throttle_classes = []
     def get(self,request,*args,**kwargs):
         user_list=models.UserInfo.objects.all()
-        ser=UserSerializers(instance=user_list,many=True)
+        ser=UserSerializers1(instance=user_list,many=True,context={'request':request})
         print(ser.data)
         return Response(ser.data)
