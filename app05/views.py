@@ -43,6 +43,7 @@ class TestView1(APIView):
 
 
         reverse_url=request.versioning_scheme.reverse('test',request=request)
+        print(reverse_url)
         return Response('基于url的正则传参,版本为%s'%request.version)
 
 
