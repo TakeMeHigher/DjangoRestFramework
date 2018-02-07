@@ -17,6 +17,11 @@ class TestView(APIView):
         #获取版本管理的类
         print(request.versioning_scheme)
 
+
+        #反向生成url
+        reverse_url=request.versioning_scheme.reverse('test',request=request)
+        print(reverse_url)
+
         return Response('get请求,当前版本为%s'%request.version)
 
 

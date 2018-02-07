@@ -44,5 +44,5 @@ urlpatterns = [
 
 
 
-    url(r'^test/', app05_views.TestView.as_view()),
+    url(r'^test/', app05_views.TestView.as_view(),name='test'),
 ]
