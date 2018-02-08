@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import serializers
+from rest_framework.pagination import LimitOffsetPagination
 
 
 from app06 import models
@@ -60,6 +61,7 @@ class SerView(APIView):
     permission_classes = []
     throttle_classes = []
     def get(self,request,*args,**kwargs):
+        self.dispatch
         user_list=models.UserInfo.objects.all()
         ser=UserSerializers(instance=user_list,many=True,context={'request':request})
         print(ser.data)
@@ -68,6 +70,7 @@ class SerView(APIView):
 
     def post(self,request,*args,**kwargs):
         ser=UserSerializers(request.data)
+        print(request.data)
         if ser.is_valid():
             print(ser.validated_data)
         else:
