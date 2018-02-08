@@ -23,23 +23,33 @@ class  UserSerializers(serializers.Serializer):
 
 
 class P2(PageNumberPagination):
-    page_size =1
+    page_size =3
     page_query_param = 'page'
     page_size_query_param = 'size'
     max_page_size = 2
 
 
-class UserListView(APIView):
+# class UserListView(APIView):
+#     authentication_classes = []
+#     permission_classes = []
+#     def get(self,request,*args,**kwargs):
+#         users=models.UserInfo.objects.all()
+#         print(users)
+#         p2=P2()
+#         page_list=p2.paginate_queryset(users,request,self)
+#         ser=UserSerializers(instance=users,many=True)
+#         response=p2.get_paginated_response(ser.data)
+#
+#         return response
+
+
+class UserListView(ModelViewSet):
     authentication_classes = []
     permission_classes = []
-    def get(self,request,*args,**kwargs):
-        users=models.UserInfo.objects.all()
-        print(users)
-        p2=P2()
-        page_list=p2.paginate_queryset(users,request,self)
-        ser=UserSerializers(instance=users,many=True)
-        response=p2.get_paginated_response(ser.data)
 
-        return response
+    queryset = models.UserInfo.objects.all()
+    pagination_class = P2
+    serializer_class=UserSerializers
+
 
 

@@ -63,10 +63,14 @@ urlpatterns = [
 
 
     #路由
-    url(r'^useres/$', app09_views.UserListView.as_view()),
-    url(r'^useres\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view()),
-    url(r'^useres/(?P<pk>\d+)/$', app09_views.UserListView.as_view()),
-    url(r'^useres/(?P<pk>\d+)\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view()),
+    #方式一
+    # url(r'^useres/$', app09_views.UserListView.as_view()),
+    # url(r'^useres\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view()),
+    # url(r'^useres/(?P<pk>\d+)/$', app09_views.UserListView.as_view()),
+    # url(r'^useres/(?P<pk>\d+)\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view()),
 
-
+    url(r'^useres/$', app09_views.UserListView.as_view({'get':'list','post':'create'})),
+    url(r'^useres\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view({'get':'list','post':'create'})),
+    url(r'^useres/(?P<pk>\d+)/$', app09_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
+    url(r'^useres/(?P<pk>\d+)\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
 ]
