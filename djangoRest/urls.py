@@ -23,6 +23,7 @@ from app05 import views as app05_views
 from app06 import views as app06_views
 from app07 import views as app07_views
 from app08 import views as app08_views
+from app09 import views as app09_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -56,7 +57,16 @@ urlpatterns = [
     url(r'^page/', app07_views.UserListView.as_view()),
 
 
-
+    #视图
     url(r'^userlist/$', app08_views.UserListView.as_view({'get':'list','post':'create'})),
     url(r'^userlist/(?P<pk>\d+)$', app08_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
+
+
+    #路由
+    url(r'^useres/$', app09_views.UserListView.as_view()),
+    url(r'^useres\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view()),
+    url(r'^useres/(?P<pk>\d+)/$', app09_views.UserListView.as_view()),
+    url(r'^useres/(?P<pk>\d+)\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view()),
+
+
 ]

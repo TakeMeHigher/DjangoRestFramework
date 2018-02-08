@@ -11,7 +11,6 @@ class Group(models.Model):
 class UserInfo(models.Model):
     name = models.CharField(max_length=32)
     pwd = models.CharField(max_length=32)
-
     group = models.ForeignKey(to='Group')
     roles = models.ManyToManyField(to='Role')
 
