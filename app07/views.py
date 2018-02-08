@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import BasePagination
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.pagination import CursorPagination
 from rest_framework import serializers
 
 
@@ -59,11 +60,36 @@ class MyResponse(object):
 #         return Response(res.__dict__)
 
 
-class P1(PageNumberPagination):
-    page_size =1
-    page_query_param = 'page'
-    page_size_query_param = 'size'
-    max_page_size = 2
+# class P2(PageNumberPagination):
+#     page_size =1
+#     page_query_param = 'page'
+#     page_size_query_param = 'size'
+#     max_page_size = 2
+#
+#
+# class UserListView(APIView):
+#     authentication_classes = []
+#     permission_classes = []
+#     def get(self,request,*args,**kwargs):
+#         res = MyResponse()
+#         try:
+#             users=models.UserInfo.objects.all()
+#             p2 = P2()
+#             page_list=p2.paginate_queryset(users,request,self)
+#             ser=UserSerializers(instance=page_list,many=True)
+#             res.data=ser.data
+#             res.next=p2.get_next_link()
+#             res.previous=p2.get_previous_link()
+#         except Exception:
+#             res.errors='xxxx出错'
+#             res.code=1001
+#
+#         return Response(res.__dict__)
+
+class P3(CursorPagination):
+    cursor_query_param = 'cursor'
+    page_size = 2
+    ordering = '-id'
 
 
 class UserListView(APIView):
@@ -73,12 +99,12 @@ class UserListView(APIView):
         res = MyResponse()
         try:
             users=models.UserInfo.objects.all()
-            p1 = P1()
-            page_list=p1.paginate_queryset(users,request,self)
+            p3 = P3()
+            page_list=p3.paginate_queryset(users,request,self)
             ser=UserSerializers(instance=page_list,many=True)
             res.data=ser.data
-            res.next=p1.get_next_link()
-            res.previous=p1.get_previous_link()
+            res.next=p3.get_next_link()
+            res.previous=p3.get_previous_link()
         except Exception:
             res.errors='xxxx出错'
             res.code=1001
