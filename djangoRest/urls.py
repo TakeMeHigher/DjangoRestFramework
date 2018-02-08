@@ -21,6 +21,7 @@ from app03 import views as app03_views
 from app04 import views as app04_views
 from app05 import views as app05_views
 from app06 import views as app06_views
+from app07 import views as app07_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -50,4 +51,6 @@ urlpatterns = [
     url(r'^(?P<version>[v1|v2]+)/test1/', app05_views.TestView1.as_view(),name='test'),
 
     url(r'^ser/', app06_views.SerView.as_view()),
+
+    url(r'^page/', app07_views.UserListView.as_view()),
 ]

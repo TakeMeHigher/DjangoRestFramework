@@ -4,7 +4,7 @@ from rest_framework.versioning import QueryParameterVersioning
 from rest_framework.versioning import URLPathVersioning
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
-import snippets.serializers
+
 # Create your views here.
 
 #1基于url的get方式传参
