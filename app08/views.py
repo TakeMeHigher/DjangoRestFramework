@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.generics import GenericAPIView
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework.pagination import PageNumberPagination
@@ -35,33 +36,44 @@ class P2(PageNumberPagination):
 
 
 
+#基于GenericViewSet
+# class UserListView(GenericViewSet):
+#     authentication_classes = []
+#     permission_classes = []
+#
+#     pagination_class = P2
+#     serializer_class = UserSerializers
+#     queryset = models.UserInfo.objects.all()
+#     def list(self,request,*args,**kwargs):
+#         userlist = models.UserInfo.objects.all()
+#         ser=UserSerializers(userlist,many=True)
+#         return Response(ser.data)
+#
+#     def retrieve(self,request,*argsm,**kwargs):
+#         user=models.UserInfo.objects.filter(id=kwargs.get('pk')).first()
+#         ser=UserSerializers(user,many=False)
+#         return Response(ser.data)
+#
+#     def create(self,request,*args,**kwargs):
+#         return Response('post')
+#
+#
+#     def update(self,request,*args,**kwargs):
+#         return Response('put')
+#
+#     def partial_update(self,request,*args,**kwargs):
+#         return Response('patch')
+#
+#     def destroy(self,request,*args,**kwargs):
+#         return Response('delete')
 
-class UserListView(GenericViewSet):
+
+class UserListView(ModelViewSet):
     authentication_classes = []
     permission_classes = []
+    
 
-    pagination_class = P2
-    serializer_class = UserSerializers
+
     queryset = models.UserInfo.objects.all()
-    def list(self,request,*args,**kwargs):
-        userlist = models.UserInfo.objects.all()
-        ser=UserSerializers(userlist,many=True)
-        return Response(ser.data)
-
-    def retrieve(self,request,*argsm,**kwargs):
-        user=models.UserInfo.objects.filter(id=kwargs.get('pk')).first()
-        ser=UserSerializers(user,many=False)
-        return Response(ser.data)
-
-    def create(self,request,*args,**kwargs):
-        return Response('post')
-
-
-    def update(self,request,*args,**kwargs):
-        return Response('put')
-
-    def partial_update(self,request,*args,**kwargs):
-        return Response('patch')
-
-    def destroy(self,request,*args,**kwargs):
-        return Response('delete')
+    serializer_class = UserSerializers
+    pagination_class = P2
