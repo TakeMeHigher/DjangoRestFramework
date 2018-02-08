@@ -24,6 +24,13 @@ from app06 import views as app06_views
 from app07 import views as app07_views
 from app08 import views as app08_views
 from app09 import views as app09_views
+from django.conf.urls import include
+from rest_framework.routers import DefaultRouter
+
+
+router=DefaultRouter()
+router.register('ctz',app09_views.UserListView)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -69,8 +76,14 @@ urlpatterns = [
     # url(r'^useres/(?P<pk>\d+)/$', app09_views.UserListView.as_view()),
     # url(r'^useres/(?P<pk>\d+)\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view()),
 
-    url(r'^useres/$', app09_views.UserListView.as_view({'get':'list','post':'create'})),
-    url(r'^useres\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view({'get':'list','post':'create'})),
-    url(r'^useres/(?P<pk>\d+)/$', app09_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
-    url(r'^useres/(?P<pk>\d+)\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
+    #方式二
+
+    # url(r'^useres/$', app09_views.UserListView.as_view({'get':'list','post':'create'})),
+    # url(r'^useres\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view({'get':'list','post':'create'})),
+    # url(r'^useres/(?P<pk>\d+)/$', app09_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
+    # url(r'^useres/(?P<pk>\d+)\.(?P<format>[a-z0-9]+)/$', app09_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
+
+   url(r'^',include(router.urls))
+
+
 ]
