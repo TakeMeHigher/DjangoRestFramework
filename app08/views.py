@@ -71,7 +71,7 @@ class P2(PageNumberPagination):
 class UserListView(ModelViewSet):
     authentication_classes = []
     permission_classes = []
-    
+
 
 
     queryset = models.UserInfo.objects.all()
