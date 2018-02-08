@@ -86,6 +86,33 @@ class MyResponse(object):
 #
 #         return Response(res.__dict__)
 
+# class P3(CursorPagination):
+#     cursor_query_param = 'cursor'
+#     page_size = 2
+#     ordering = '-id'
+#
+#
+# class UserListView(APIView):
+#     authentication_classes = []
+#     permission_classes = []
+#     def get(self,request,*args,**kwargs):
+#         res = MyResponse()
+#         try:
+#             users=models.UserInfo.objects.all()
+#             p3 = P3()
+#             page_list=p3.paginate_queryset(users,request,self)
+#             ser=UserSerializers(instance=page_list,many=True)
+#             res.data=ser.data
+#             res.next=p3.get_next_link()
+#             res.previous=p3.get_previous_link()
+#         except Exception:
+#             res.errors='xxxx出错'
+#             res.code=1001
+#
+#         return Response(res.__dict__)
+
+
+
 class P3(CursorPagination):
     cursor_query_param = 'cursor'
     page_size = 2
@@ -96,17 +123,9 @@ class UserListView(APIView):
     authentication_classes = []
     permission_classes = []
     def get(self,request,*args,**kwargs):
-        res = MyResponse()
-        try:
-            users=models.UserInfo.objects.all()
-            p3 = P3()
-            page_list=p3.paginate_queryset(users,request,self)
-            ser=UserSerializers(instance=page_list,many=True)
-            res.data=ser.data
-            res.next=p3.get_next_link()
-            res.previous=p3.get_previous_link()
-        except Exception:
-            res.errors='xxxx出错'
-            res.code=1001
-
-        return Response(res.__dict__)
+        users=models.UserInfo.objects.all()
+        p3 = P3()
+        page_list=p3.paginate_queryset(users,request,self)
+        ser=UserSerializers(instance=page_list,many=True)
+        response=p3.get_paginated_response(ser.data)
+        return response
