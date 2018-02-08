@@ -22,6 +22,7 @@ from app04 import views as app04_views
 from app05 import views as app05_views
 from app06 import views as app06_views
 from app07 import views as app07_views
+from app08 import views as app08_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -53,4 +54,9 @@ urlpatterns = [
     url(r'^ser/', app06_views.SerView.as_view()),
 
     url(r'^page/', app07_views.UserListView.as_view()),
+
+
+
+    url(r'^userlist/$', app08_views.UserListView.as_view({'get':'list','post':'create'})),
+    url(r'^userlist/(?P<pk>\d+)$', app08_views.UserListView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
 ]
