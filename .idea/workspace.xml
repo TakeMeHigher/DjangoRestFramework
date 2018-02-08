@@ -51,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/app06/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+              <caret line="15" column="45" lean-forward="false" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app07/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="54" column="24" lean-forward="false" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+            <state relative-caret-position="588">
+              <caret line="61" column="29" lean-forward="false" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="29" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -104,8 +104,8 @@
       <file leaf-file-name="pagination.py" pinned="false" current-in-tab="false">
         <entry file="file://D:/virtualenv/envs/vuedjango/Lib/site-packages/rest_framework/pagination.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-508">
-              <caret line="333" column="49" lean-forward="false" selection-start-line="333" selection-start-column="42" selection-end-line="333" selection-end-column="49" />
+            <state relative-caret-position="394">
+              <caret line="191" column="0" lean-forward="true" selection-start-line="190" selection-start-column="4" selection-end-line="191" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -227,7 +227,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="D:/pythontext/day144/day144课上所有/s6day144 - 1 - 分页1" />
+    <property name="last_opened_file_path" value="D:/pythontext/day144/day144课上所有/s6day144 - 2 -视图" />
     <property name="nodejs_interpreter_path" value="D:/Program Files/nodejs/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
@@ -711,7 +711,7 @@
     <entry file="file://$PROJECT_DIR$/app06/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+          <caret line="15" column="45" lean-forward="false" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -746,14 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/virtualenv/envs/vuedjango/Lib/site-packages/rest_framework/pagination.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-508">
-          <caret line="333" column="49" lean-forward="false" selection-start-line="333" selection-start-column="42" selection-end-line="333" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/virtualenv/envs/vuedjango/Lib/site-packages/rest_framework/utils/encoders.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -770,10 +762,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/virtualenv/envs/vuedjango/Lib/site-packages/rest_framework/pagination.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="191" column="0" lean-forward="true" selection-start-line="190" selection-start-column="4" selection-end-line="191" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app07/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="54" column="24" lean-forward="false" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+        <state relative-caret-position="588">
+          <caret line="61" column="29" lean-forward="false" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="29" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

@@ -23,11 +23,6 @@ class  UserSerializers(serializers.Serializer):
             roles_list.append({'id':role.id,'name':role.name})
         return roles_list
 
-class P1(LimitOffsetPagination):
-    default_limit = 1
-    limit_query_param = 'limit'
-    offset_query_param = 'offset'
-    max_limit = 2
 
 
 class MyResponse(object):
@@ -36,13 +31,44 @@ class MyResponse(object):
         self.code=code
         self.errors=errors
 
+# class P1(LimitOffsetPagination):
+#     default_limit = 1
+#     limit_query_param = 'limit'
+#     offset_query_param = 'offset'
+#     max_limit = 2
+#
+# class UserListView(APIView):
+#     authentication_classes = []
+#     permission_classes = []
+#
+#
+#     def get(self,request,*args,**kwargs):
+#         res = MyResponse()
+#         try:
+#             users=models.UserInfo.objects.all()
+#             p1 = P1()
+#             page_list=p1.paginate_queryset(users,request,self)
+#             ser=UserSerializers(instance=page_list,many=True)
+#             res.data=ser.data
+#             res.next=p1.get_next_link()
+#             res.previous=p1.get_previous_link()
+#         except Exception:
+#             res.errors='xxxx出错'
+#             res.code=1001
+#
+#         return Response(res.__dict__)
+
+
+class P1(PageNumberPagination):
+    page_size =1
+    page_query_param = 'page'
+    page_size_query_param = 'size'
+    max_page_size = 2
 
 
 class UserListView(APIView):
     authentication_classes = []
     permission_classes = []
-
-
     def get(self,request,*args,**kwargs):
         res = MyResponse()
         try:
@@ -58,4 +84,3 @@ class UserListView(APIView):
             res.code=1001
 
         return Response(res.__dict__)
-
